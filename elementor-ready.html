@@ -1,0 +1,3542 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PandaDoc Company Profile | Elementor Ready Widget</title>
+    <!-- Google Fonts: Inter & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+      /* ==========================================================================
+         DESIGN SYSTEM & THEME TOKENS
+         ========================================================================== */
+      :root {
+        /* Common Fonts */
+        --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+        --font-display: 'Outfit', system-ui, -apple-system, sans-serif;
+
+        /* HSL Brand Colors */
+        --brand-red: #e1251b;
+        --brand-red-hover: #bc1912;
+        --brand-red-pulse: rgba(225, 37, 27, 0.1);
+        --brand-accent: #0f172a;
+        
+        --success-green: #10b981;
+        --success-green-bg: #ecfdf5;
+        --info-blue: #3b82f6;
+        
+        --transition-fast: 0.15s ease;
+        --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+        /* Light Theme Variables */
+        --bg-global: #f4f5f8;
+        --bg-card: #ffffff;
+        --bg-header: #ffffff;
+        --bg-header-border: #e2e8f0;
+        --bg-input: #f8fafc;
+        --bg-input-border: #cbd5e1;
+        
+        --text-primary: #0f172a;
+        --text-secondary: #475569;
+        --text-muted: #64748b;
+        --text-inverse: #ffffff;
+        
+        --border-color: #e2e8f0;
+        --border-hover: #cbd5e1;
+        
+        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+      }
+
+      /* Dark Mode Variables Override */
+      body.dark {
+        --bg-global: #0b0f19;
+        --bg-card: #111827;
+        --bg-header: #111827;
+        --bg-header-border: #1f2937;
+        --bg-input: #1f2937;
+        --bg-input-border: #374151;
+        
+        --text-primary: #f9fafb;
+        --text-secondary: #9ca3af;
+        --text-muted: #6b7280;
+        --text-inverse: #0b0f19;
+        
+        --border-color: #1f2937;
+        --border-hover: #374151;
+        
+        --brand-red: #ef4444;
+        --brand-red-hover: #f87171;
+        --brand-red-pulse: rgba(239, 68, 68, 0.2);
+        --brand-accent: #f8fafc;
+        
+        --success-green-bg: #064e3b;
+        
+        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.4);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.5);
+      }
+
+      /* ==========================================================================
+         RESET & GLOBAL BASICS
+         ========================================================================== */
+      .elementor-html-widget-container * {
+        box-sizing: border-box;
+      }
+      
+      .elementor-html-widget-container {
+        font-family: var(--font-body);
+        background-color: var(--bg-global);
+        color: var(--text-primary);
+        line-height: 1.5;
+        transition: background-color var(--transition-normal), color var(--transition-normal);
+        padding-bottom: 40px;
+      }
+
+      .elementor-html-widget-container a {
+        color: var(--brand-red);
+        text-decoration: none;
+        transition: color var(--transition-fast);
+      }
+
+      .elementor-html-widget-container a:hover {
+        color: var(--brand-red-hover);
+        text-decoration: underline;
+      }
+
+      .elementor-html-widget-container button {
+        cursor: pointer;
+        border: none;
+        outline: none;
+        font-family: var(--font-body);
+      }
+
+      .elementor-html-widget-container hr.section-divider {
+        border: 0;
+        height: 1px;
+        background-color: var(--border-color);
+        margin: 24px 0;
+      }
+
+      .scroll-margin {
+        scroll-margin-top: 120px;
+      }
+
+      /* ==========================================================================
+         GLOBAL STRUCTURE: HEADER & BRAND RAIL
+         ========================================================================== */
+      .global-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        width: 100%;
+        height: 60px;
+        background-color: var(--bg-header);
+        border-bottom: 1px solid var(--bg-header-border);
+        box-shadow: var(--shadow-sm);
+        transition: background-color var(--transition-normal), border-color var(--transition-normal);
+      }
+
+      .header-container {
+        max-width: 1440px;
+        height: 100%;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo-area {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .logo-accent {
+        background-color: var(--brand-red);
+        color: white;
+        font-weight: 800;
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        width: 28px;
+        height: 28px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 6px;
+      }
+
+      .logo-text {
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: 1.25rem;
+        color: var(--text-primary);
+      }
+
+      .logo-text span {
+        color: var(--brand-red);
+        font-weight: 400;
+      }
+
+      .search-bar-container {
+        flex: 0 1 500px;
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+
+      .search-icon {
+        position: absolute;
+        left: 12px;
+        color: var(--text-muted);
+      }
+
+      .global-search-input {
+        width: 100%;
+        padding: 8px 12px 8px 38px;
+        font-size: 0.875rem;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        background-color: var(--bg-input);
+        color: var(--text-primary);
+        transition: border-color var(--transition-fast), background-color var(--transition-fast);
+      }
+
+      .global-search-input:focus {
+        outline: none;
+        border-color: var(--brand-red);
+        background-color: var(--bg-card);
+      }
+
+      .user-profile-nav {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .upgrade-btn {
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--brand-red);
+        border: 1.5px solid var(--brand-red);
+        background: transparent;
+        padding: 6px 12px;
+        border-radius: 20px;
+        transition: background-color var(--transition-fast), color var(--transition-fast);
+      }
+
+      .upgrade-btn:hover {
+        background-color: var(--brand-red);
+        color: white;
+      }
+
+      .user-avatar {
+        width: 32px;
+        height: 32px;
+        background-color: var(--brand-red);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 700;
+        font-size: 0.8125rem;
+        font-family: var(--font-display);
+      }
+
+      /* ==========================================================================
+         COMPANY PROFILE HERO SECTION
+         ========================================================================== */
+      .company-hero-section {
+        background-color: var(--bg-card);
+        border-bottom: 1px solid var(--border-color);
+        padding: 32px 24px 0 24px;
+        transition: background-color var(--transition-normal), border-color var(--transition-normal);
+      }
+
+      .hero-container {
+        max-width: 1440px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 24px;
+      }
+
+      .company-identity-block {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+      }
+
+      .company-logo-wrapper {
+        width: 80px;
+        height: 80px;
+        flex-shrink: 0;
+      }
+
+      .company-logo {
+        width: 100%;
+        height: 100%;
+      }
+
+      .company-name-info h1 {
+        font-family: var(--font-display);
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 4px;
+      }
+
+      .title-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .verified-badge {
+        background-color: var(--success-green-bg);
+        color: var(--success-green);
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 3px 8px;
+        border-radius: 12px;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .company-tagline {
+        color: var(--text-secondary);
+        font-size: 1rem;
+        margin-bottom: 12px;
+        font-weight: 400;
+      }
+
+      .quick-links {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        font-size: 0.875rem;
+        color: var(--text-muted);
+      }
+
+      .meta-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-weight: 500;
+      }
+
+      .meta-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .meta-separator {
+        color: var(--border-color);
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 12px;
+      }
+
+      /* Button Styles */
+      .btn {
+        font-weight: 600;
+        font-size: 0.875rem;
+        padding: 10px 18px;
+        border-radius: 8px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: background-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+      }
+
+      .btn-primary {
+        background-color: var(--brand-red);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background-color: var(--brand-red-hover);
+        box-shadow: 0 4px 12px var(--brand-red-pulse);
+      }
+
+      .btn-primary-pulse {
+        background-color: var(--brand-red);
+        color: white;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-primary-pulse::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 120%;
+        height: 120%;
+        background: white;
+        opacity: 0;
+        border-radius: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+      }
+
+      .btn-primary-pulse:hover {
+        background-color: var(--brand-red-hover);
+        box-shadow: 0 4px 12px var(--brand-red-pulse);
+      }
+
+      .btn-primary-pulse:active::after {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.15;
+        transition: 0s;
+      }
+
+      .btn-secondary {
+        background-color: var(--bg-global);
+        color: var(--text-primary);
+        border: 1px solid var(--border-color);
+      }
+
+      .btn-secondary:hover {
+        background-color: var(--border-hover);
+        border-color: var(--border-hover);
+      }
+
+      /* ==========================================================================
+         METRICS STRIP CONTAINER
+         ========================================================================== */
+      .metrics-strip-container {
+        max-width: 1440px;
+        margin: 0 auto;
+        margin-top: 32px;
+        padding: 20px 0;
+        border-top: 1px solid var(--border-color);
+      }
+
+      .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 16px;
+      }
+
+      .metric-card {
+        border-right: 1px solid var(--border-color);
+        padding: 4px 12px;
+      }
+
+      .metric-card:last-child {
+        border-right: none;
+      }
+
+      .metric-label {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 4px;
+      }
+
+      .metric-value {
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 2px;
+      }
+
+      .metric-trend {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        font-weight: 500;
+      }
+
+      .metric-trend.upward {
+        color: var(--success-green);
+        font-weight: 600;
+      }
+
+      /* ==========================================================================
+         STICKY SUB-NAVIGATION BAR
+         ========================================================================== */
+      .sub-navbar {
+        position: sticky;
+        top: 60px;
+        z-index: 90;
+        width: 100%;
+        height: 52px;
+        background-color: var(--bg-card);
+        border-bottom: 1px solid var(--border-color);
+        transition: background-color var(--transition-normal), border-color var(--transition-normal);
+      }
+
+      .sub-navbar-container {
+        max-width: 1440px;
+        height: 100%;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-tabs {
+        list-style: none;
+        display: flex;
+        gap: 4px;
+        height: 100%;
+      }
+
+      .tab-item {
+        height: 100%;
+      }
+
+      .tab-link {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding: 0 16px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        border-bottom: 3px solid transparent;
+        transition: border-color var(--transition-fast), color var(--transition-fast);
+      }
+
+      .tab-link:hover {
+        color: var(--brand-red);
+        text-decoration: none;
+      }
+
+      .tab-link.active {
+        color: var(--brand-red);
+        border-bottom-color: var(--brand-red);
+      }
+
+      .theme-toggle-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 14px;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        background-color: var(--bg-global);
+        color: var(--text-primary);
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        transition: all var(--transition-fast);
+      }
+
+      .theme-toggle-btn:hover {
+        background-color: var(--border-hover);
+        border-color: var(--border-hover);
+      }
+
+      .sun-icon {
+        display: none;
+      }
+
+      .moon-icon {
+        display: inline-block;
+      }
+
+      body.dark .sun-icon {
+        display: inline-block;
+      }
+
+      body.dark .moon-icon {
+        display: none;
+      }
+
+      /* ==========================================================================
+         MAIN LAYOUT GRID
+         ========================================================================== */
+      .main-layout-container {
+        max-width: 1440px;
+        margin: 32px auto;
+        padding: 0 24px;
+      }
+
+      .layout-grid {
+        display: grid;
+        grid-template-columns: 7.2fr 2.8fr;
+        gap: 24px;
+        align-items: start;
+      }
+
+      .card-box {
+        background-color: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 24px;
+        margin-bottom: 24px;
+        box-shadow: var(--shadow-md);
+        transition: background-color var(--transition-normal), border-color var(--transition-normal);
+      }
+
+      .section-title {
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 16px;
+      }
+
+      .section-desc {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        margin-bottom: 20px;
+      }
+
+      /* ==========================================================================
+         LEFT MAIN SECTIONS
+         ========================================================================== */
+      
+      /* --- OVERVIEW --- */
+      .overview-text-container {
+        position: relative;
+        overflow: hidden;
+        max-height: 72px;
+        transition: max-height var(--transition-slow);
+      }
+
+      .overview-text-container.expanded {
+        max-height: 500px;
+      }
+
+      .overview-text {
+        font-size: 0.9375rem;
+        color: var(--text-secondary);
+        margin-bottom: 12px;
+      }
+
+      .overview-text-more {
+        font-size: 0.9375rem;
+        color: var(--text-secondary);
+      }
+
+      .overview-text-container::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 36px;
+        background: linear-gradient(to bottom, transparent, var(--bg-card));
+        pointer-events: none;
+        transition: opacity var(--transition-fast);
+      }
+
+      .overview-text-container.expanded::after {
+        opacity: 0;
+      }
+
+      .read-more-btn {
+        background: transparent;
+        color: var(--brand-red);
+        font-weight: 600;
+        font-size: 0.875rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        margin-top: 12px;
+      }
+
+      .read-more-btn:hover {
+        color: var(--brand-red-hover);
+      }
+
+      .chevron-icon {
+        transition: transform var(--transition-normal);
+      }
+
+      .overview-text-container.expanded + .read-more-btn .chevron-icon {
+        transform: rotate(180deg);
+      }
+
+      .subsection-title {
+        font-family: var(--font-display);
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 16px;
+      }
+
+      .firmographic-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .detail-row {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 8px;
+      }
+
+      .detail-label {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      .detail-value {
+        font-size: 0.875rem;
+        color: var(--text-primary);
+        font-weight: 500;
+      }
+
+      /* --- CONTACTS --- */
+      .section-header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+
+      .contacts-count-badge {
+        background-color: var(--brand-red-pulse);
+        color: var(--brand-red);
+        font-size: 0.8125rem;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 12px;
+      }
+
+      .contacts-toolbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+
+      .filter-tabs-wrapper {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .filter-tab {
+        background-color: var(--bg-global);
+        color: var(--text-secondary);
+        border: 1px solid var(--border-color);
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        transition: all var(--transition-fast);
+      }
+
+      .filter-tab:hover {
+        background-color: var(--border-hover);
+        color: var(--text-primary);
+      }
+
+      .filter-tab.active {
+        background-color: var(--brand-red);
+        color: white;
+        border-color: var(--brand-red);
+      }
+
+      .contacts-search-box {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+
+      .search-icon-sm {
+        position: absolute;
+        left: 10px;
+        color: var(--text-muted);
+      }
+
+      .contacts-search-input {
+        padding: 6px 10px 6px 32px;
+        font-size: 0.8125rem;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+        background-color: var(--bg-input);
+        color: var(--text-primary);
+        width: 220px;
+        transition: all var(--transition-fast);
+      }
+
+      .contacts-search-input:focus {
+        outline: none;
+        border-color: var(--brand-red);
+        background-color: var(--bg-card);
+        width: 260px;
+      }
+
+      .table-scroll-container {
+        overflow-x: auto;
+        width: 100%;
+      }
+
+      .contacts-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+        font-size: 0.875rem;
+      }
+
+      .contacts-table th {
+        color: var(--text-muted);
+        font-weight: 600;
+        padding: 12px 16px;
+        border-bottom: 2px solid var(--border-color);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .contacts-table td {
+        padding: 16px;
+        border-bottom: 1px solid var(--border-color);
+        vertical-align: middle;
+      }
+
+      .contact-row:hover {
+        background-color: var(--bg-global);
+      }
+
+      .contact-profile-cell {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .contact-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-weight: 700;
+        font-family: var(--font-display);
+        font-size: 0.875rem;
+      }
+
+      .initial-orange { background-color: #f97316; }
+      .initial-blue { background-color: #3b82f6; }
+      .initial-green { background-color: #10b981; }
+      .initial-purple { background-color: #8b5cf6; }
+      .initial-teal { background-color: #14b8a6; }
+
+      .contact-name {
+        display: block;
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+
+      .location-sub {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+      }
+
+      .contact-title {
+        color: var(--text-secondary);
+        font-weight: 500;
+        max-width: 250px;
+      }
+
+      .dept-badge {
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 2px 8px;
+        border-radius: 4px;
+      }
+
+      .dept-badge.executive { background-color: #ffedd5; color: #c2410c; }
+      .dept-badge.engineering { background-color: #dbeafe; color: #1d4ed8; }
+      .dept-badge.marketing { background-color: #d1fae5; color: #047857; }
+      .dept-badge.sales { background-color: #f3e8ff; color: #6b21a8; }
+
+      body.dark .dept-badge.executive { background-color: #451a03; color: #fdba74; }
+      body.dark .dept-badge.engineering { background-color: #1e3a8a; color: #93c5fd; }
+      body.dark .dept-badge.marketing { background-color: #064e3b; color: #6ee7b7; }
+      body.dark .dept-badge.sales { background-color: #3b0764; color: #d8b4fe; }
+
+      .reveal-actions {
+        display: flex;
+        gap: 8px;
+      }
+
+      .reveal-btn {
+        background-color: var(--bg-global);
+        border: 1px solid var(--border-color);
+        color: var(--brand-red);
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 6px 12px;
+        border-radius: 6px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all var(--transition-fast);
+      }
+
+      .reveal-btn:hover {
+        background-color: var(--brand-red-pulse);
+        border-color: var(--brand-red);
+      }
+
+      .reveal-btn.revealed {
+        background-color: var(--success-green-bg);
+        border-color: var(--success-green);
+        color: var(--success-green);
+        font-weight: 500;
+        cursor: text;
+      }
+
+      body.dark .reveal-btn.revealed {
+        background-color: #064e3b;
+        border-color: var(--success-green);
+        color: #34d399;
+      }
+
+      .spinner {
+        width: 14px;
+        height: 14px;
+        border: 2px solid transparent;
+        border-top-color: var(--brand-red);
+        border-radius: 50%;
+        animation: spin 0.6s linear infinite;
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+
+      .no-results {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+        color: var(--text-muted);
+        gap: 8px;
+      }
+
+      .no-result-icon {
+        opacity: 0.5;
+      }
+
+      /* --- TECH STACK --- */
+      .tech-search-box {
+        display: flex;
+        align-items: center;
+      }
+
+      .tech-filter-input {
+        padding: 6px 12px;
+        font-size: 0.8125rem;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+        background-color: var(--bg-input);
+        color: var(--text-primary);
+        width: 180px;
+        transition: border-color var(--transition-fast);
+      }
+
+      .tech-filter-input:focus {
+        outline: none;
+        border-color: var(--brand-red);
+      }
+
+      .tech-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-top: 16px;
+      }
+
+      .tech-category-card {
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 16px;
+        background-color: var(--bg-input);
+        transition: transform var(--transition-fast), border-color var(--transition-fast);
+      }
+
+      .tech-category-card:hover {
+        transform: translateY(-2px);
+        border-color: var(--border-hover);
+      }
+
+      .tech-category-title {
+        font-family: var(--font-display);
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .tech-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .tech-badge {
+        font-size: 0.75rem;
+        font-weight: 500;
+        padding: 4px 8px;
+        background-color: var(--bg-card);
+        color: var(--text-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        transition: all var(--transition-fast);
+      }
+
+      .tech-badge:hover {
+        border-color: var(--brand-red);
+        color: var(--brand-red);
+      }
+
+      .tech-badge.match {
+        background-color: var(--brand-red-pulse);
+        border-color: var(--brand-red);
+        color: var(--brand-red);
+        font-weight: 600;
+      }
+
+      .tech-badge.fade-badge {
+        opacity: 0.35;
+      }
+
+      /* --- FINANCIALS --- */
+      .financial-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+        font-size: 0.875rem;
+      }
+
+      .financial-table th {
+        color: var(--text-muted);
+        font-weight: 600;
+        padding: 12px 16px;
+        border-bottom: 2px solid var(--border-color);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .financial-table td {
+        padding: 16px;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .funding-row {
+        cursor: pointer;
+        transition: background-color var(--transition-fast);
+      }
+
+      .funding-row:hover {
+        background-color: var(--bg-global);
+      }
+
+      .round-title-cell {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+
+      .expand-arrow {
+        transition: transform var(--transition-fast);
+      }
+
+      .funding-row.expanded-row .expand-arrow {
+        transform: rotate(90deg);
+      }
+
+      .funding-amount {
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      .funding-details-row td {
+        padding: 0 16px !important;
+        border-bottom: none;
+        background-color: var(--bg-global);
+      }
+
+      .details-expanded-box {
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height var(--transition-normal), padding var(--transition-normal);
+      }
+
+      .funding-row.expanded-row + .funding-details-row .details-expanded-box {
+        max-height: 200px;
+        padding: 16px 24px;
+      }
+
+      .funding-row.expanded-row + .funding-details-row {
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .details-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        font-size: 0.8125rem;
+        color: var(--text-secondary);
+      }
+
+      /* --- SCOOPS & INTENT --- */
+      .scoops-container {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 24px;
+        margin-top: 16px;
+      }
+
+      .intent-dial-box {
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 16px;
+        background-color: var(--bg-input);
+      }
+
+      .widget-subtitle {
+        font-family: var(--font-display);
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 16px;
+      }
+
+      .intent-visualizer {
+        position: relative;
+        width: 100%;
+        max-width: 200px;
+        margin: 0 auto 12px auto;
+        text-align: center;
+      }
+
+      .gauge-svg {
+        width: 100%;
+        height: auto;
+      }
+
+      .gauge-value-arc {
+        transition: stroke-dashoffset 1s ease-out;
+      }
+
+      .gauge-pointer {
+        transform-origin: 100px 100px;
+        transition: transform 1s ease-out;
+      }
+
+      .gauge-label-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .gauge-value {
+        font-family: var(--font-display);
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        line-height: 1;
+      }
+
+      .gauge-status {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--brand-red);
+        text-transform: uppercase;
+      }
+
+      .surge-topics {
+        margin-top: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .surge-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+      }
+
+      .badge {
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+
+      .badge-high {
+        background-color: var(--brand-red-pulse);
+        color: var(--brand-red);
+      }
+
+      .badge-med {
+        background-color: #fef3c7;
+        color: #d97706;
+      }
+
+      body.dark .badge-med {
+        background-color: #78350f;
+        color: #fcd34d;
+      }
+
+      .scoops-news {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .scoop-card {
+        border-left: 3px solid var(--brand-red);
+        background-color: var(--bg-card);
+        padding: 12px 16px;
+        border-radius: 0 8px 8px 0;
+        box-shadow: var(--shadow-sm);
+        transition: transform var(--transition-fast);
+      }
+
+      .scoop-card:hover {
+        transform: translateX(4px);
+      }
+
+      .scoop-date {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        margin-bottom: 4px;
+      }
+
+      .scoop-headline {
+        font-family: var(--font-display);
+        font-size: 0.9375rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 6px;
+      }
+
+      .scoop-description {
+        font-size: 0.8125rem;
+        color: var(--text-secondary);
+        line-height: 1.4;
+      }
+
+      /* ==========================================================================
+         RIGHT SIDEBAR WIDGETS
+         ========================================================================== */
+      .sidebar {
+        position: sticky;
+        top: 132px;
+      }
+
+      .sidebar-widget {
+        padding: 20px;
+      }
+
+      .widget-title {
+        font-family: var(--font-display);
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 8px;
+      }
+
+      .widget-desc {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        margin-bottom: 16px;
+      }
+
+      .competitor-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .competitor-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .competitor-item:last-child {
+        border-bottom: none;
+      }
+
+      .comp-profile {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .comp-avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-weight: 700;
+        font-size: 0.75rem;
+        font-family: var(--font-display);
+      }
+
+      .initial-docusign { background-color: #0d46a0; }
+      .initial-hellosign { background-color: #0061ff; }
+      .initial-signnow { background-color: #ea1c24; }
+      .initial-proposify { background-color: #f7a935; }
+
+      .comp-name {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+
+      .comp-meta {
+        display: block;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+      }
+
+      .compare-btn {
+        background-color: transparent;
+        color: var(--brand-red);
+        border: 1px solid var(--border-color);
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 4px 10px;
+        border-radius: 4px;
+        transition: all var(--transition-fast);
+      }
+
+      .compare-btn:hover {
+        background-color: var(--brand-red);
+        color: white;
+        border-color: var(--brand-red);
+      }
+
+      /* ACCORDION FAQ */
+      .accordion-container {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .accordion-item {
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        overflow: hidden;
+        transition: border-color var(--transition-fast);
+      }
+
+      .accordion-item:hover {
+        border-color: var(--border-hover);
+      }
+
+      .accordion-header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 16px;
+        background-color: var(--bg-input);
+        color: var(--text-primary);
+        font-size: 0.8125rem;
+        font-weight: 600;
+        text-align: left;
+        gap: 12px;
+        transition: background-color var(--transition-fast);
+      }
+
+      .accordion-header:hover {
+        background-color: var(--bg-global);
+      }
+
+      .accordion-chevron {
+        flex-shrink: 0;
+        transition: transform var(--transition-normal);
+      }
+
+      .accordion-item.active .accordion-chevron {
+        transform: rotate(180deg);
+        color: var(--brand-red);
+      }
+
+      .accordion-item.active .accordion-header {
+        background-color: var(--bg-card);
+      }
+
+      .accordion-body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height var(--transition-normal);
+        background-color: var(--bg-card);
+      }
+
+      .accordion-body-content {
+        padding: 12px 16px;
+        font-size: 0.8125rem;
+        color: var(--text-secondary);
+        line-height: 1.5;
+        border-top: 1px solid var(--border-color);
+      }
+
+      /* ==========================================================================
+         GLOBAL FOOTER
+         ========================================================================== */
+      .global-footer {
+        background-color: var(--bg-card);
+        border-top: 1px solid var(--border-color);
+        padding: 32px 24px;
+        margin-top: 48px;
+        transition: background-color var(--transition-normal), border-color var(--transition-normal);
+      }
+
+      .footer-container {
+        max-width: 1440px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .footer-copyright {
+        font-size: 0.8125rem;
+        color: var(--text-muted);
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 16px;
+      }
+
+      .footer-links a {
+        font-size: 0.8125rem;
+        color: var(--text-muted);
+      }
+
+      .footer-links a:hover {
+        color: var(--brand-red);
+      }
+
+      /* ==========================================================================
+         MODAL WINDOWS
+         ========================================================================== */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1000;
+        background-color: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(4px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 24px;
+        transition: opacity var(--transition-normal);
+      }
+
+      body.dark .modal-overlay {
+        background-color: rgba(3, 7, 18, 0.8);
+      }
+
+      .modal-card {
+        width: 100%;
+        max-width: 600px;
+        background-color: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        box-shadow: var(--shadow-lg);
+        overflow: hidden;
+        transform: translateY(0);
+        transition: transform var(--transition-normal), background-color var(--transition-normal);
+      }
+
+      .modal-overlay.hidden {
+        display: none;
+      }
+
+      .modal-header {
+        padding: 16px 24px;
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .modal-header h3 {
+        font-family: var(--font-display);
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      .modal-close-btn {
+        background: transparent;
+        color: var(--text-muted);
+        font-size: 1.5rem;
+        line-height: 1;
+        font-weight: 400;
+      }
+
+      .modal-close-btn:hover {
+        color: var(--brand-red);
+      }
+
+      .modal-body {
+        padding: 24px;
+      }
+
+      .modal-intro {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        margin-bottom: 16px;
+      }
+
+      .comparison-table-wrapper {
+        overflow-x: auto;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+      }
+
+      .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+        font-size: 0.8125rem;
+      }
+
+      .comparison-table th {
+        background-color: var(--bg-global);
+        padding: 10px 16px;
+        border-bottom: 2px solid var(--border-color);
+        font-weight: 700;
+        color: var(--text-primary);
+        text-transform: uppercase;
+        font-size: 0.75rem;
+      }
+
+      .comparison-table td {
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--border-color);
+        color: var(--text-secondary);
+        vertical-align: top;
+      }
+
+      .comparison-table tr:last-child td {
+        border-bottom: none;
+      }
+
+      .comparison-table td strong {
+        color: var(--text-primary);
+      }
+
+      .text-highlight {
+        color: var(--brand-red) !important;
+        font-weight: 700;
+      }
+
+      .text-sm {
+        font-size: 0.75rem;
+      }
+
+      .modal-footer {
+        padding: 16px 24px;
+        border-top: 1px solid var(--border-color);
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+        background-color: var(--bg-global);
+      }
+
+      /* Modal Large Sizing */
+      .modal-large {
+        max-width: 900px;
+      }
+
+      /* ==========================================================================
+         HAMBURGER TOGGLE BUTTON
+         ========================================================================== */
+      .mobile-drawer-toggle {
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 22px;
+        height: 16px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 101;
+      }
+
+      .hamburger-bar {
+        width: 100%;
+        height: 2.5px;
+        background-color: var(--text-primary);
+        border-radius: 4px;
+        transition: transform var(--transition-fast), opacity var(--transition-fast);
+      }
+
+      .mobile-drawer-toggle.active .hamburger-bar:nth-child(1) {
+        transform: translateY(6.5px) rotate(45deg);
+      }
+
+      .mobile-drawer-toggle.active .hamburger-bar:nth-child(2) {
+        opacity: 0;
+      }
+
+      .mobile-drawer-toggle.active .hamburger-bar:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      /* ==========================================================================
+         MOBILE SLIDE-OUT DRAWER OVERLAY
+         ========================================================================== */
+      .mobile-drawer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1010;
+        background-color: rgba(15, 23, 42, 0.4);
+        backdrop-filter: blur(2px);
+        display: flex;
+        justify-content: flex-end;
+        opacity: 1;
+        transition: opacity var(--transition-normal);
+      }
+
+      .mobile-drawer.hidden-drawer {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .drawer-content {
+        width: 300px;
+        height: 100%;
+        background-color: var(--bg-card);
+        border-left: 1px solid var(--border-color);
+        box-shadow: var(--shadow-lg);
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        transform: translateX(0);
+        transition: transform var(--transition-normal), background-color var(--transition-normal);
+      }
+
+      .mobile-drawer.hidden-drawer .drawer-content {
+        transform: translateX(100%);
+      }
+
+      .drawer-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 16px;
+      }
+
+      .drawer-close-btn {
+        background: transparent;
+        color: var(--text-muted);
+        font-size: 1.75rem;
+        line-height: 1;
+      }
+
+      .drawer-close-btn:hover {
+        color: var(--brand-red);
+      }
+
+      .drawer-search-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+
+      .search-icon-drawer {
+        position: absolute;
+        left: 12px;
+        color: var(--text-muted);
+      }
+
+      .drawer-search-input {
+        width: 100%;
+        padding: 10px 12px 10px 38px;
+        font-size: 0.875rem;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        background-color: var(--bg-input);
+        color: var(--text-primary);
+      }
+
+      .drawer-search-input:focus {
+        outline: none;
+        border-color: var(--brand-red);
+        background-color: var(--bg-card);
+      }
+
+      .drawer-menu-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .drawer-link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 16px;
+        background-color: var(--bg-input);
+        color: var(--text-primary) !important;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        transition: all var(--transition-fast);
+      }
+
+      .drawer-link:hover {
+        background-color: var(--brand-red-pulse);
+        border-color: var(--brand-red);
+        color: var(--brand-red) !important;
+        text-decoration: none;
+      }
+
+      .drawer-link-icon {
+        color: var(--text-secondary);
+        transition: color var(--transition-fast);
+      }
+
+      .drawer-link:hover .drawer-link-icon {
+        color: var(--brand-red);
+      }
+
+      /* ==========================================================================
+         UPGRADE PLAN PRICING MODAL
+         ========================================================================== */
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-top: 16px;
+        align-items: stretch;
+      }
+
+      .pricing-card {
+        border: 1.5px solid var(--border-color);
+        border-radius: 16px;
+        padding: 24px;
+        background-color: var(--bg-input);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        position: relative;
+        transition: all var(--transition-fast);
+      }
+
+      .pricing-card:hover {
+        transform: translateY(-4px);
+        border-color: var(--border-hover);
+        box-shadow: var(--shadow-md);
+      }
+
+      .pricing-card.popular {
+        border: 2.5px solid var(--brand-red);
+        background-color: var(--bg-card);
+        transform: scale(1.02);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .pricing-card.popular:hover {
+        transform: translateY(-4px) scale(1.02);
+        box-shadow: 0 10px 25px var(--brand-red-pulse);
+      }
+
+      .popular-ribbon {
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: var(--brand-red);
+        color: white;
+        font-size: 0.75rem;
+        font-weight: 700;
+        padding: 4px 14px;
+        border-radius: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .plan-name {
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        margin-bottom: 8px;
+      }
+
+      .plan-price {
+        font-family: var(--font-display);
+        font-size: 2.25rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        margin-bottom: 8px;
+      }
+
+      .plan-price span {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--text-muted);
+      }
+
+      .plan-desc {
+        font-size: 0.8125rem;
+        color: var(--text-secondary);
+        margin-bottom: 20px;
+        min-height: 38px;
+      }
+
+      .plan-features {
+        list-style: none;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 24px;
+        flex-grow: 1;
+      }
+
+      .plan-features li {
+        font-size: 0.8125rem;
+        color: var(--text-secondary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .plan-features li::before {
+        content: '✓';
+        color: var(--success-green);
+        font-weight: 700;
+      }
+
+      .plan-features li.disabled {
+        color: var(--text-muted);
+        text-decoration: line-through;
+        opacity: 0.6;
+      }
+
+      .plan-features li.disabled::before {
+        content: '×';
+        color: var(--text-muted);
+      }
+
+      .plan-btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      /* ==========================================================================
+         MY PROFILE SETTINGS MODAL
+         ========================================================================== */
+      .profile-card-header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+      }
+
+      .profile-large-avatar {
+        width: 64px;
+        height: 64px;
+        background-color: var(--brand-red);
+        color: white;
+        border-radius: 50%;
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: 1.75rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 4px 10px var(--brand-red-pulse);
+      }
+
+      .profile-name {
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 2px;
+      }
+
+      .profile-title {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        font-weight: 500;
+      }
+
+      .profile-meta {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+      }
+
+      .profile-section-block {
+        margin-bottom: 24px;
+      }
+
+      .profile-section-title {
+        font-family: var(--font-display);
+        font-size: 0.9375rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .usage-progress-container {
+        background-color: var(--bg-input);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 16px;
+      }
+
+      .usage-progress-labels {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        margin-bottom: 10px;
+      }
+
+      .progress-bar-track {
+        width: 100%;
+        height: 10px;
+        background-color: var(--border-color);
+        border-radius: 5px;
+        overflow: hidden;
+        margin-bottom: 10px;
+      }
+
+      .progress-bar-fill {
+        height: 100%;
+        background-color: var(--brand-red);
+        border-radius: 5px;
+        transition: width 1s ease-out;
+      }
+
+      .progress-subtext {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+      }
+
+      .progress-subtext a {
+        font-weight: 600;
+      }
+
+      .settings-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .settings-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 14px;
+        background-color: var(--bg-input);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        font-size: 0.8125rem;
+      }
+
+      .settings-item-label {
+        color: var(--text-secondary);
+        font-weight: 500;
+      }
+
+      .settings-status-connected {
+        background-color: var(--success-green-bg);
+        color: var(--success-green);
+        font-weight: 700;
+        font-size: 0.75rem;
+        padding: 2px 8px;
+        border-radius: 4px;
+      }
+
+      body.dark .settings-status-connected {
+        background-color: #064e3b;
+        color: #34d399;
+      }
+
+      .settings-value {
+        color: var(--text-primary);
+        font-weight: 600;
+      }
+
+      /* ==========================================================================
+         RESPONSIVE LAYOUT & MEDIA BREAKPOINTS
+         ========================================================================== */
+
+      @media (max-width: 1024px) {
+        .layout-grid {
+          grid-template-columns: 1fr;
+        }
+        
+        .sidebar {
+          position: static;
+        }
+        
+        .pricing-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .pricing-card.popular {
+          transform: none;
+        }
+        
+        .pricing-card.popular:hover {
+          transform: translateY(-4px);
+        }
+      }
+
+      @media (max-width: 900px) {
+        .metrics-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        
+        .metric-card:nth-child(3) {
+          border-right: none;
+        }
+        
+        .hero-container {
+          flex-direction: column;
+          gap: 16px;
+        }
+        
+        .hero-actions {
+          width: 100%;
+          justify-content: flex-start;
+        }
+      }
+
+      @media (max-width: 768px) {
+        html {
+          font-size: 15px;
+        }
+        
+        .global-header {
+          height: 56px;
+        }
+        
+        .search-bar-container {
+          display: none;
+        }
+        
+        .user-profile-nav .upgrade-btn,
+        .user-profile-nav .user-avatar {
+          display: none;
+        }
+        
+        .mobile-drawer-toggle {
+          display: flex;
+        }
+        
+        .sub-navbar {
+          top: 56px;
+          height: 48px;
+        }
+        
+        .sub-navbar-container {
+          padding: 0 16px;
+        }
+        
+        .nav-tabs {
+          gap: 0;
+        }
+        
+        .tab-link {
+          padding: 0 10px;
+          font-size: 0.8125rem;
+        }
+        
+        .firmographic-grid {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+        
+        .contacts-toolbar {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+        }
+        
+        .contacts-search-box {
+          width: 100%;
+        }
+        
+        .contacts-search-input {
+          width: 100%;
+        }
+        
+        .contacts-search-input:focus {
+          width: 100%;
+        }
+        
+        .tech-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .scoops-container {
+          grid-template-columns: 1fr;
+        }
+        
+        .pricing-grid {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+      }
+
+      @media (max-width: 500px) {
+        .metrics-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .metric-card {
+          border-right: none;
+        }
+        
+        .nav-tabs {
+          overflow-x: auto;
+          white-space: nowrap;
+          width: calc(100% - 70px);
+        }
+        
+        .nav-tabs::-webkit-scrollbar {
+          display: none;
+        }
+        
+        .theme-toggle-btn {
+          padding: 6px 10px;
+        }
+        
+        .theme-text {
+          display: none;
+        }
+        
+        .company-identity-block {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          gap: 12px;
+        }
+        
+        .quick-links {
+          justify-content: center;
+        }
+        
+        .tech-grid {
+          grid-template-columns: 1fr;
+        }
+        
+        .contacts-table th:nth-child(3),
+        .contacts-table td:nth-child(3) {
+          display: none;
+        }
+        
+        .reveal-actions {
+          flex-direction: column;
+          gap: 4px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Entire Container wrapping the layout -->
+    <div class="elementor-html-widget-container">
+      
+      <!-- Global Site Header (ZoomInfo Inspired top-bar) -->
+      <header class="global-header">
+        <div class="header-container">
+          <div class="logo-area">
+            <span class="logo-accent">Z</span>
+            <span class="logo-text">info<span>hub</span></span>
+          </div>
+          <div class="search-bar-container">
+            <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="currentColor"/></svg>
+            <input type="text" placeholder="Search for companies, contacts, or technologies..." class="global-search-input" />
+          </div>
+          <div class="user-profile-nav">
+            <button class="upgrade-btn" id="header-upgrade-btn">Upgrade Plan</button>
+            <div class="user-avatar" id="header-user-avatar">AY</div>
+            <!-- Hamburger menu button for mobile screens -->
+            <button class="mobile-drawer-toggle" id="mobile-drawer-toggle" aria-label="Toggle mobile menu">
+              <span class="hamburger-bar"></span>
+              <span class="hamburger-bar"></span>
+              <span class="hamburger-bar"></span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Mobile Navigation Drawer Overlay Widget -->
+      <div id="mobile-drawer" class="mobile-drawer hidden-drawer">
+        <div class="drawer-content">
+          <div class="drawer-header">
+            <div class="logo-area">
+              <span class="logo-accent">Z</span>
+              <span class="logo-text">info<span>hub</span></span>
+            </div>
+            <button class="drawer-close-btn" id="drawer-close-btn">&times;</button>
+          </div>
+          <div class="drawer-body">
+            <div class="drawer-search-container">
+              <svg class="search-icon-drawer" viewBox="0 0 24 24" width="16" height="16"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="currentColor"/></svg>
+              <input type="text" placeholder="Search companies, contacts..." class="drawer-search-input" id="drawer-search-input" />
+            </div>
+            <ul class="drawer-menu-links">
+              <li>
+                <a href="#" id="drawer-link-upgrade" class="drawer-link">
+                  <svg viewBox="0 0 24 24" width="20" height="20" class="drawer-link-icon"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z" fill="currentColor"/></svg>
+                  Upgrade Membership Plan
+                </a>
+              </li>
+              <li>
+                <a href="#" id="drawer-link-profile" class="drawer-link">
+                  <svg viewBox="0 0 24 24" width="20" height="20" class="drawer-link-icon"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="currentColor"/></svg>
+                  My User Profile Settings
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Company Identity Header Profile -->
+      <section class="company-hero-section">
+        <div class="hero-container">
+          <div class="company-identity-block">
+            <div class="company-logo-wrapper">
+              <svg viewBox="0 0 100 100" class="company-logo">
+                <rect width="100" height="100" rx="20" fill="var(--brand-red)" />
+                <path d="M30 25h30c10 0 15 5 15 12s-5 12-15 12H42v26H30V25zm12 14v16h18c4 0 7-2 7-8s-3-8-7-8H42z" fill="#ffffff" />
+              </svg>
+            </div>
+            <div class="company-name-info">
+              <div class="title-row">
+                <h1>PandaDoc</h1>
+                <span class="verified-badge" title="ZoomInfo Verified Profile">
+                  <svg viewBox="0 0 24 24" width="16" height="16"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/></svg>
+                  Verified
+                </span>
+              </div>
+              <p class="company-tagline">Leading Document Automation & Digital Signature Platform for Sales Teams</p>
+              <div class="quick-links">
+                <a href="https://www.pandadoc.com" target="_blank" class="meta-link" rel="noopener">
+                  <svg viewBox="0 0 24 24" width="16" height="16"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z" fill="currentColor"/></svg>
+                  pandadoc.com
+                </a>
+                <span class="meta-separator">•</span>
+                <span class="meta-item">
+                  <svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/></svg>
+                  San Francisco, California
+                </span>
+                <span class="meta-separator">•</span>
+                <span class="meta-item">
+                  <svg viewBox="0 0 24 24" width="16" height="16"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z" fill="currentColor"/></svg>
+                  Computer Software & SaaS
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-actions">
+            <button class="btn btn-secondary">
+              <svg viewBox="0 0 24 24" width="16" height="16"><path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2zm0 15-5-2.18L7 18V5h10v13z" fill="currentColor"/></svg>
+              Save List
+            </button>
+            <button class="btn btn-primary-pulse">
+              <svg viewBox="0 0 24 24" width="16" height="16"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z" fill="currentColor"/></svg>
+              Unlock Profile
+            </button>
+          </div>
+        </div>
+
+        <div class="metrics-strip-container">
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <div class="metric-label">Annual Revenue</div>
+              <div class="metric-value">$120.0M</div>
+              <div class="metric-trend upward">+15% YoY Growth</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Employee Count</div>
+              <div class="metric-value">850</div>
+              <div class="metric-trend">Global Team</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Total Funding</div>
+              <div class="metric-value">$51.2M</div>
+              <div class="metric-trend upward">Series C Active</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Founded Year</div>
+              <div class="metric-value">2011</div>
+              <div class="metric-trend">15 Years Active</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Ownership</div>
+              <div class="metric-value">Private</div>
+              <div class="metric-trend">VC Backed</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sticky Sub-Navigation Bar & Scrollspy -->
+      <nav class="sub-navbar">
+        <div class="sub-navbar-container">
+          <ul class="nav-tabs" id="nav-tabs">
+            <li class="tab-item"><a href="#overview" class="tab-link active">Overview</a></li>
+            <li class="tab-item"><a href="#contacts" class="tab-link">Contacts</a></li>
+            <li class="tab-item"><a href="#technographics" class="tab-link">Tech Stack</a></li>
+            <li class="tab-item"><a href="#financials" class="tab-link">Financials</a></li>
+            <li class="tab-item"><a href="#scoops" class="tab-link">Scoops & Intent</a></li>
+            <li class="tab-item"><a href="#faqs" class="tab-link">FAQs</a></li>
+          </ul>
+          
+          <div class="theme-switcher-wrapper">
+            <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle dark/light theme">
+              <svg class="sun-icon" viewBox="0 0 24 24" width="20" height="20"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-7h-2v3h2v-3zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.75l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-5.02 9.42l-1.79 1.8 1.41 1.41 1.8-1.79-1.42-1.42zM11 18h2v3h-2v-3z" fill="currentColor"/></svg>
+              <svg class="moon-icon" viewBox="0 0 24 24" width="20" height="20"><path d="M12.3 22c5.96 0 10.8-4.84 10.8-10.8 0-2.9-1.15-5.54-3-7.5l-1.35 1.35C20.25 6.66 21 8.74 21 11c0 4.97-4.03 9-9 9-2.26 0-4.34-.84-5.95-2.22L4.7 19.13C6.66 20.95 9.3 22 12.3 22zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c1.07 0 2.11-.17 3.09-.49l-1.47-1.47C12.98 20 12.5 20 12 20c-4.41 0-8-3.59-8-8s3.59-8 8-8c.5 0 .98.05 1.46.12L15.09 2.5C14.11 2.17 13.07 2 12 2z" fill="currentColor"/></svg>
+              <span class="theme-text">Dark Mode</span>
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Main Layout Grid -->
+      <main class="main-layout-container">
+        <div class="layout-grid">
+          
+          <!-- Left Column (Main Content - 70%) -->
+          <div class="main-content">
+            
+            <!-- Section 1: Overview -->
+            <section id="overview" class="content-section card-box scroll-margin">
+              <h2 class="section-title">Company Overview</h2>
+              <div class="overview-content">
+                <div class="overview-text-container" id="overview-text-container">
+                  <p class="overview-text">
+                    PandaDoc is a comprehensive document automation software that streamlines the process of creating, approving, sharing, tracking, and legally e-signing proposals, quotes, and contracts. Founded in 2011 by Mikita Mikado and Sergey Barysiuk, the company empowers modern sales, operations, and legal teams to accelerate deals, improve conversion rates, and reduce time spent on administrative paperwork. 
+                  </p>
+                  <p class="overview-text-more">
+                    The platform integrates seamlessly with major CRM environments, including Salesforce, HubSpot, Zoho CRM, and Microsoft Dynamics, allowing users to automatically pull customer data into documents for automated personalization. Over the years, PandaDoc has expanded its operations globally, serving more than 50,000 customers ranging from small startups to enterprise organizations. Backed by prominent venture capital firms including G2 Venture Partners, Microsoft's venture fund M12, and HubSpot, PandaDoc remains a market leader in the digital transaction management (DTM) space.
+                  </p>
+                </div>
+                <button class="read-more-btn" id="read-more-btn">
+                  Read More
+                  <svg viewBox="0 0 24 24" width="16" height="16" class="chevron-icon"><path d="M7 10l5 5 5-5H7z" fill="currentColor"/></svg>
+                </button>
+              </div>
+
+              <hr class="section-divider" />
+
+              <h3 class="subsection-title">Firmographic Details</h3>
+              <div class="firmographic-grid">
+                <div class="detail-row">
+                  <span class="detail-label">Website:</span>
+                  <span class="detail-value"><a href="https://www.pandadoc.com" target="_blank" rel="noopener">www.pandadoc.com</a></span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">Phone:</span>
+                  <span class="detail-value">(415) 968-9635</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">Headquarters:</span>
+                  <span class="detail-value">3739 Balboa St, San Francisco, CA 94121</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">Industry:</span>
+                  <span class="detail-value">Computer Software, SaaS</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">Company Type:</span>
+                  <span class="detail-value">Private (VC Backed)</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">Business Model:</span>
+                  <span class="detail-value">B2B SaaS</span>
+                </div>
+              </div>
+            </section>
+
+            <!-- Section 2: Contacts -->
+            <section id="contacts" class="content-section card-box scroll-margin">
+              <div class="section-header-row">
+                <h2 class="section-title">Key Contacts & Decision Makers</h2>
+                <span class="contacts-count-badge" id="contacts-count">5 Contacts</span>
+              </div>
+              <p class="section-desc">Search and filter active decision-makers at PandaDoc. Click to reveal direct contact details.</p>
+              
+              <div class="contacts-toolbar">
+                <div class="filter-tabs-wrapper">
+                  <button class="filter-tab active" data-dept="all">All Departments</button>
+                  <button class="filter-tab" data-dept="Executive">Executive</button>
+                  <button class="filter-tab" data-dept="Engineering">Engineering</button>
+                  <button class="filter-tab" data-dept="Marketing">Marketing</button>
+                  <button class="filter-tab" data-dept="Sales">Sales</button>
+                </div>
+                <div class="contacts-search-box">
+                  <svg class="search-icon-sm" viewBox="0 0 24 24" width="16" height="16"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="currentColor"/></svg>
+                  <input type="text" placeholder="Search by name or title..." class="contacts-search-input" id="contacts-search-input" />
+                </div>
+              </div>
+
+              <div class="table-scroll-container">
+                <table class="contacts-table" id="contacts-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Title</th>
+                      <th>Department</th>
+                      <th>Direct Contact Info</th>
+                    </tr>
+                  </thead>
+                  <tbody id="contacts-tbody">
+                    <tr class="contact-row" data-department="Executive">
+                      <td>
+                        <div class="contact-profile-cell">
+                          <div class="contact-avatar initial-orange">MM</div>
+                          <div>
+                            <span class="contact-name">Mikita Mikado</span>
+                            <span class="location-sub">San Francisco, CA</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="contact-title">Chief Executive Officer & Co-Founder</td>
+                      <td><span class="dept-badge executive">Executive</span></td>
+                      <td>
+                        <div class="reveal-actions">
+                          <button class="reveal-btn email" data-type="email" data-val="mikita.mikado@pandadoc.com" data-masked="m...o@pandadoc.com">
+                            <span class="btn-text">Get Email</span>
+                            <span class="spinner hidden"></span>
+                          </button>
+                          <button class="reveal-btn phone" data-type="phone" data-val="+1 (415) 968-3012" data-masked="+1 (415) XXX-XXXX">
+                            <span class="btn-text">Get Phone</span>
+                            <span class="spinner hidden"></span>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="contact-row" data-department="Engineering">
+                      <td>
+                        <div class="contact-profile-cell">
+                          <div class="contact-avatar initial-blue">SB</div>
+                          <div>
+                            <span class="contact-name">Sergey Barysiuk</span>
+                            <span class="location-sub">San Francisco, CA</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="contact-title">Chief Technology Officer & Co-Founder</td>
+                      <td><span class="dept-badge engineering">Engineering</span></td>
+                      <td>
+                        <div class="reveal-actions">
+                          <button class="reveal-btn email" data-type="email" data-val="sergey.b@pandadoc.com" data-masked="s...b@pandadoc.com">
+                            <span class="btn-text">Get Email</span>
+                            <span class="spinner hidden"></span>
+                          </button>
+                          <button class="reveal-btn phone" data-type="phone" data-val="+1 (415) 968-5524" data-masked="+1 (415) XXX-XXXX">
+                            <span class="btn-text">Get Phone</span>
+                            <span class="spinner hidden"></span>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="contact-row" data-department="Marketing">
+                      <td>
+                        <div class="contact-profile-cell">
+                          <div class="contact-avatar initial-green">LC</div>
+                          <div>
+                            <span class="contact-name">Laura Crawford</span>
+                            <span class="location-sub">St. Petersburg, FL</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="contact-title">VP of Marketing & Brand Strategy</td>
+                      <td><span class="dept-badge marketing">Marketing</span></td>
+                      <td>
+                        <div class="reveal-actions">
+                          <button class="reveal-btn email" data-type="email" data-val="laura.crawford@pandadoc.com" data-masked="l...d@pandadoc.com">
+                            <span class="btn-text">Get Email</span>
+                            <span class="spinner hidden"></span>
+                          </button>
+                          <button class="reveal-btn phone" data-type="phone" data-val="+1 (813) 555-9012" data-masked="+1 (813) XXX-XXXX">
+                            <span class="btn-text">Get Phone</span>
+                            <span class="spinner hidden"></span>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="contact-row" data-department="Sales">
+                      <td>
+                        <div class="contact-profile-cell">
+                          <div class="contact-avatar initial-purple">RH</div>
+                          <div>
+                            <span class="contact-name">Ryan Hilliard</span>
+                            <span class="location-sub">Boston, MA</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="contact-title">Head of Sales Operations & Growth</td>
+                      <td><span class="dept-badge sales">Sales</span></td>
+                      <td>
+                        <div class="reveal-actions">
+                          <button class="reveal-btn email" data-type="email" data-val="ryan.hilliard@pandadoc.com" data-masked="r...d@pandadoc.com">
+                            <span class="btn-text">Get Email</span>
+                            <span class="spinner hidden"></span>
+                          </button>
+                          <button class="reveal-btn phone" data-type="phone" data-val="+1 (617) 555-1288" data-masked="+1 (617) XXX-XXXX">
+                            <span class="btn-text">Get Phone</span>
+                            <span class="spinner hidden"></span>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="contact-row" data-department="Engineering">
+                      <td>
+                        <div class="contact-profile-cell">
+                          <div class="contact-avatar initial-teal">AS</div>
+                          <div>
+                            <span class="contact-name">Alex Smith</span>
+                            <span class="location-sub">Remote, UK</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="contact-title">Director of Engineering, Core Workflows</td>
+                      <td><span class="dept-badge engineering">Engineering</span></td>
+                      <td>
+                        <div class="reveal-actions">
+                          <button class="reveal-btn email" data-type="email" data-val="alex.smith@pandadoc.com" data-masked="a...h@pandadoc.com">
+                            <span class="btn-text">Get Email</span>
+                            <span class="spinner hidden"></span>
+                          </button>
+                          <button class="reveal-btn phone" data-type="phone" data-val="+44 20 7946 0954" data-masked="+44 20 XXXX XXXX">
+                            <span class="btn-text">Get Phone</span>
+                            <span class="spinner hidden"></span>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="no-results hidden" id="no-contacts-results">
+                  <svg viewBox="0 0 24 24" width="32" height="32" class="no-result-icon"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="currentColor"/></svg>
+                  <span>No contacts match your query.</span>
+                </div>
+              </div>
+            </section>
+
+            <!-- Section 3: Technographics -->
+            <section id="technographics" class="content-section card-box scroll-margin">
+              <div class="section-header-row">
+                <h2 class="section-title">Technology Stack</h2>
+                <div class="tech-search-box">
+                  <input type="text" placeholder="Filter technologies..." class="tech-filter-input" id="tech-filter-input" />
+                </div>
+              </div>
+              <p class="section-desc">Current technologies, platforms, and SaaS products in use by PandaDoc.</p>
+              
+              <div class="tech-grid" id="tech-grid">
+                <div class="tech-category-card" data-category="cloud">
+                  <h3 class="tech-category-title">Cloud & Hosting</h3>
+                  <div class="tech-tags">
+                    <span class="tech-badge" data-name="amazon web services (aws)">Amazon Web Services</span>
+                    <span class="tech-badge" data-name="google cloud platform">Google Cloud</span>
+                    <span class="tech-badge" data-name="cloudflare cdn">Cloudflare</span>
+                  </div>
+                </div>
+                <div class="tech-category-card" data-category="crm">
+                  <h3 class="tech-category-title">CRM & Sales Tech</h3>
+                  <div class="tech-tags">
+                    <span class="tech-badge" data-name="salesforce sales cloud">Salesforce</span>
+                    <span class="tech-badge" data-name="hubspot sales hub CRM">HubSpot CRM</span>
+                    <span class="tech-badge" data-name="zoominfo intelligence">ZoomInfo</span>
+                  </div>
+                </div>
+                <div class="tech-category-card" data-category="marketing">
+                  <h3 class="tech-category-title">Marketing Automation</h3>
+                  <div class="tech-tags">
+                    <span class="tech-badge" data-name="marketo automation">Marketo</span>
+                    <span class="tech-badge" data-name="mailchimp transactional email">Mailchimp</span>
+                    <span class="tech-badge" data-name="google tag manager analytics">Google Tag Manager</span>
+                  </div>
+                </div>
+                <div class="tech-category-card" data-category="collaboration">
+                  <h3 class="tech-category-title">Productivity & Collaboration</h3>
+                  <div class="tech-tags">
+                    <span class="tech-badge" data-name="slack team messenger">Slack</span>
+                    <span class="tech-badge" data-name="jira project software issue tracking">Jira</span>
+                    <span class="tech-badge" data-name="google workspace g-suite">Google Workspace</span>
+                    <span class="tech-badge" data-name="zoom video conferencing">Zoom</span>
+                  </div>
+                </div>
+                <div class="tech-category-card" data-category="analytics">
+                  <h3 class="tech-category-title">Analytics & Tracking</h3>
+                  <div class="tech-tags">
+                    <span class="tech-badge" data-name="google analytics 4 track">Google Analytics</span>
+                    <span class="tech-badge" data-name="mixpanel user tracking">Mixpanel</span>
+                    <span class="tech-badge" data-name="segment cdp text analytics">Segment</span>
+                    <span class="tech-badge" data-name="hotjar heatmaps analytics text">Hotjar</span>
+                  </div>
+                </div>
+                <div class="tech-category-card" data-category="databases">
+                  <h3 class="tech-category-title">Databases & Development</h3>
+                  <div class="tech-tags">
+                    <span class="tech-badge" data-name="postgresql database rel">PostgreSQL</span>
+                    <span class="tech-badge" data-name="redis key-value cache memory">Redis</span>
+                    <span class="tech-badge" data-name="python programming language framework">Python</span>
+                    <span class="tech-badge" data-name="node.js javascript runtime environment">Node.js</span>
+                  </div>
+                </div>
+              </div>
+              <div class="no-results hidden" id="no-tech-results">
+                <svg viewBox="0 0 24 24" width="32" height="32" class="no-result-icon"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="currentColor"/></svg>
+                <span>No technologies match your search query.</span>
+              </div>
+            </section>
+
+            <!-- Section 4: Financials -->
+            <section id="financials" class="content-section card-box scroll-margin">
+              <h2 class="section-title">Funding History & Rounds</h2>
+              <p class="section-desc">PandaDoc has raised a total of $51.2M across several venture rounds. Click on any row to expand round details.</p>
+              
+              <div class="table-scroll-container">
+                <table class="financial-table" id="financial-table">
+                  <thead>
+                    <tr>
+                      <th>Round</th>
+                      <th>Date</th>
+                      <th>Amount</th>
+                      <th>Type</th>
+                      <th>Lead Investors</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="funding-row" data-target="round-c">
+                      <td class="funding-round-name">
+                        <div class="round-title-cell">
+                          <svg viewBox="0 0 24 24" width="16" height="16" class="expand-arrow"><path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="currentColor"/></svg>
+                          Series C
+                        </div>
+                      </td>
+                      <td>Sep 2021</td>
+                      <td class="funding-amount">$30.0M</td>
+                      <td>Equity Funding</td>
+                      <td>G2 Venture Partners, HubSpot</td>
+                    </tr>
+                    <tr class="funding-details-row hidden-details" id="round-c">
+                      <td colspan="5">
+                        <div class="details-expanded-box">
+                          <div class="details-grid">
+                            <div>
+                              <strong>Valuation:</strong> Post-money valuation estimated around $1B (Unicorn status).
+                            </div>
+                            <div>
+                              <strong>Participating Investors:</strong> Microsoft's M12, Headline, EBRD, One Peak Partners.
+                            </div>
+                            <div>
+                              <strong>Purpose:</strong> Capital utilized to accelerate product expansion, invest in API capabilities, and scale global sales operations.
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr class="funding-row" data-target="round-b">
+                      <td class="funding-round-name">
+                        <div class="round-title-cell">
+                          <svg viewBox="0 0 24 24" width="16" height="16" class="expand-arrow"><path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="currentColor"/></svg>
+                          Series B
+                        </div>
+                      </td>
+                      <td>Aug 2020</td>
+                      <td class="funding-amount">$15.0M</td>
+                      <td>Equity Funding</td>
+                      <td>One Peak Partners, Microsoft M12</td>
+                    </tr>
+                    <tr class="funding-details-row hidden-details" id="round-b">
+                      <td colspan="5">
+                        <div class="details-expanded-box">
+                          <div class="details-grid">
+                            <div>
+                              <strong>Valuation:</strong> Estimated at $150M.
+                            </div>
+                            <div>
+                              <strong>Participating Investors:</strong> EBRD Venture Capital, Headline.
+                            </div>
+                            <div>
+                              <strong>Purpose:</strong> Scaling commercial operations and expanding European operations.
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr class="funding-row" data-target="round-a">
+                      <td class="funding-round-name">
+                        <div class="round-title-cell">
+                          <svg viewBox="0 0 24 24" width="16" height="16" class="expand-arrow"><path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="currentColor"/></svg>
+                          Series A
+                        </div>
+                      </td>
+                      <td>May 2017</td>
+                      <td class="funding-amount">$5.0M</td>
+                      <td>Equity Funding</td>
+                      <td>Rembrandt Venture Partners</td>
+                    </tr>
+                    <tr class="funding-details-row hidden-details" id="round-a">
+                      <td colspan="5">
+                        <div class="details-expanded-box">
+                          <div class="details-grid">
+                            <div>
+                              <strong>Valuation:</strong> Estimated at $35M.
+                            </div>
+                            <div>
+                              <strong>Participating Investors:</strong> Microsoft (M12), Gumi Cryptos, Silicon Valley Bank.
+                            </div>
+                            <div>
+                              <strong>Purpose:</strong> Focused on deep product engineering, adding e-signatures, and building workflow automation modules.
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <tr class="funding-row" data-target="round-seed">
+                      <td class="funding-round-name">
+                        <div class="round-title-cell">
+                          <svg viewBox="0 0 24 24" width="16" height="16" class="expand-arrow"><path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="currentColor"/></svg>
+                          Seed Round
+                        </div>
+                      </td>
+                      <td>Jul 2014</td>
+                      <td class="funding-amount">$1.2M</td>
+                      <td>Venture Debt & Equity</td>
+                      <td>Kima Ventures, Almaz Capital</td>
+                    </tr>
+                    <tr class="funding-details-row hidden-details" id="round-seed">
+                      <td colspan="5">
+                        <div class="details-expanded-box">
+                          <div class="details-grid">
+                            <div>
+                              <strong>Valuation:</strong> Estimated at $6M.
+                            </div>
+                            <div>
+                              <strong>Participating Investors:</strong> Startup Highway, TMT Investments.
+                            </div>
+                            <div>
+                              <strong>Purpose:</strong> Building the MVP of PandaDoc and signing initial beta customers.
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- Section 5: Scoops & Intent -->
+            <section id="scoops" class="content-section card-box scroll-margin">
+              <h2 class="section-title">Scoops & Buying Intent Signals</h2>
+              <p class="section-desc">Monitor search spikes and intent signals that show buying engagement, alongside curated business intelligence news cards.</p>
+              
+              <div class="scoops-container">
+                <div class="intent-dial-box">
+                  <h3 class="widget-subtitle">Topic Search Surge Score</h3>
+                  <div class="intent-visualizer">
+                    <svg viewBox="0 0 200 120" class="gauge-svg">
+                      <path d="M20,100 A80,80 0 0,1 180,100" fill="none" stroke="var(--border-color)" stroke-width="16" stroke-linecap="round"/>
+                      <path d="M20,100 A80,80 0 0,1 180,100" fill="none" stroke="var(--brand-red)" stroke-width="16" stroke-linecap="round" stroke-dasharray="251" stroke-dashoffset="30" class="gauge-value-arc"/>
+                      <line x1="100" y1="100" x2="160" y2="70" stroke="var(--text-primary)" stroke-width="4" stroke-linecap="round" class="gauge-pointer" />
+                      <circle cx="100" cy="100" r="8" fill="var(--text-primary)" />
+                    </svg>
+                    <div class="gauge-label-overlay">
+                      <span class="gauge-value">88</span>
+                      <span class="gauge-status">High Intent</span>
+                    </div>
+                  </div>
+                  <div class="surge-topics">
+                    <div class="surge-item">
+                      <span>E-Signature Solutions</span>
+                      <span class="badge badge-high">92 / 100 Surge</span>
+                    </div>
+                    <div class="surge-item">
+                      <span>Proposal Generators</span>
+                      <span class="badge badge-med">78 / 100 Surge</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="scoops-news">
+                  <h3 class="widget-subtitle">Curated Business Scoops</h3>
+                  <div class="scoop-card">
+                    <div class="scoop-date">June 2026</div>
+                    <h4 class="scoop-headline">Product Expansion: AI Proposal Drafting Tools</h4>
+                    <p class="scoop-description">PandaDoc has rolled out advanced AI drafting assistants that automatically generate complete proposals from Salesforce CRM record definitions.</p>
+                  </div>
+                  <div class="scoop-card">
+                    <div class="scoop-date">April 2026</div>
+                    <h4 class="scoop-headline">Executive Shift: VP of Security Operations Hired</h4>
+                    <p class="scoop-description">PandaDoc has hired a new VP of Security Operations, hinting at increased investment in federal security compliances (FedRAMP).</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          
+          <!-- Right Sidebar Column -->
+          <aside class="sidebar">
+            <section class="sidebar-widget card-box">
+              <h3 class="widget-title">Similar Companies</h3>
+              <p class="widget-desc">Top competitors in document management & e-signature software.</p>
+              
+              <div class="competitor-list">
+                <div class="competitor-item" data-comp="docusign">
+                  <div class="comp-profile">
+                    <div class="comp-avatar initial-docusign">DS</div>
+                    <div>
+                      <h4 class="comp-name">DocuSign</h4>
+                      <span class="comp-meta">$2.5B Rev • 7,400 Employees</span>
+                    </div>
+                  </div>
+                  <button class="compare-btn" data-target-company="DocuSign" data-revenue="$2.5B" data-employees="7,400" data-hq="San Francisco, CA" data-founded="2003" data-tech="Salesforce, AWS, React, Adobe Experience Manager, Oracle" data-logo="DS">Compare</button>
+                </div>
+                <div class="competitor-item" data-comp="hellosign">
+                  <div class="comp-profile">
+                    <div class="comp-avatar initial-hellosign">HS</div>
+                    <div>
+                      <h4 class="comp-name">HelloSign (Dropbox Sign)</h4>
+                      <span class="comp-meta">$150M Rev • 400 Employees</span>
+                    </div>
+                  </div>
+                  <button class="compare-btn" data-target-company="HelloSign" data-revenue="$150M" data-employees="400" data-hq="San Francisco, CA" data-founded="2010" data-tech="Dropbox, React, AWS, Python, HubSpot" data-logo="HS">Compare</button>
+                </div>
+                <div class="competitor-item" data-comp="signnow">
+                  <div class="comp-profile">
+                    <div class="comp-avatar initial-signnow">SN</div>
+                    <div>
+                      <h4 class="comp-name">SignNow</h4>
+                      <span class="comp-meta">$80M Rev • 350 Employees</span>
+                    </div>
+                  </div>
+                  <button class="compare-btn" data-target-company="SignNow" data-revenue="$80M" data-employees="350" data-hq="Brookline, MA" data-founded="2011" data-tech="AWS, PHP, React, Zendesk, Salesforce" data-logo="SN">Compare</button>
+                </div>
+                <div class="competitor-item" data-comp="proposify">
+                  <div class="comp-profile">
+                    <div class="comp-avatar initial-proposify">PR</div>
+                    <div>
+                      <h4 class="comp-name">Proposify</h4>
+                      <span class="comp-meta">$20M Rev • 150 Employees</span>
+                    </div>
+                  </div>
+                  <button class="compare-btn" data-target-company="Proposify" data-revenue="$20M" data-employees="150" data-hq="Halifax, Canada" data-founded="2012" data-tech="PHP, MySQL, Vue.js, AWS, Intercom" data-logo="PR">Compare</button>
+                </div>
+              </div>
+            </section>
+
+            <section id="faqs" class="sidebar-widget card-box scroll-margin">
+              <h3 class="widget-title">Frequently Asked Questions</h3>
+              
+              <div class="accordion-container">
+                <div class="accordion-item">
+                  <button class="accordion-header">
+                    <span>What is PandaDoc's annual revenue?</span>
+                    <svg viewBox="0 0 24 24" width="18" height="18" class="accordion-chevron"><path d="M7 10l5 5 5-5H7z" fill="currentColor"/></svg>
+                  </button>
+                  <div class="accordion-body">
+                    <div class="accordion-body-content">
+                      PandaDoc's estimated annual revenue is approximately <strong>$120.0 Million</strong>, showing positive expansion momentum through its SaaS subscription-based growth model.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-header">
+                    <span>How many employees does PandaDoc have?</span>
+                    <svg viewBox="0 0 24 24" width="18" height="18" class="accordion-chevron"><path d="M7 10l5 5 5-5H7z" fill="currentColor"/></svg>
+                  </button>
+                  <div class="accordion-body">
+                    <div class="accordion-body-content">
+                      PandaDoc has approximately <strong>850 employees</strong>, working across offices in San Francisco (headquarters), Florida, Boston, and international remote teams.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-header">
+                    <span>Who founded PandaDoc?</span>
+                    <svg viewBox="0 0 24 24" width="18" height="18" class="accordion-chevron"><path d="M7 10l5 5 5-5H7z" fill="currentColor"/></svg>
+                  </button>
+                  <div class="accordion-body">
+                    <div class="accordion-body-content">
+                      PandaDoc was co-founded in 2011 by <strong>Mikita Mikado</strong> (CEO) and <strong>Sergey Barysiuk</strong> (CTO) in San Francisco, California.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <button class="accordion-header">
+                    <span>Where is PandaDoc headquartered?</span>
+                    <svg viewBox="0 0 24 24" width="18" height="18" class="accordion-chevron"><path d="M7 10l5 5 5-5H7z" fill="currentColor"/></svg>
+                  </button>
+                  <div class="accordion-body">
+                    <div class="accordion-body-content">
+                      PandaDoc's global headquarters is located at <strong>3739 Balboa St, San Francisco, CA 94121</strong>.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </main>
+        </div>
+      </main>
+
+      <!-- Global Footer -->
+      <footer class="global-footer">
+        <div class="footer-container">
+          <p class="footer-copyright">&copy; 2026 ZinfoHub Platform. Rebuilt for evaluation purposes. All placeholders represent mock-ups.</p>
+          <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
+            <a href="#">Data Security</a>
+          </div>
+        </div>
+      </footer>
+
+      <!-- Comparison Modal Overlay -->
+      <div id="compare-modal" class="modal-overlay hidden">
+        <div class="modal-card">
+          <div class="modal-header">
+            <h3>Company Comparison</h3>
+            <button class="modal-close-btn" id="modal-close-btn">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p class="modal-intro">Comparing primary metrics between <strong>PandaDoc</strong> and competitor <strong id="compare-competitor-name">DocuSign</strong>.</p>
+            <div class="comparison-table-wrapper">
+              <table class="comparison-table">
+                <thead>
+                  <tr>
+                    <th>Metric</th>
+                    <th>PandaDoc</th>
+                    <th id="compare-comp-header">Competitor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Annual Revenue</strong></td>
+                    <td class="text-highlight">$120.0M</td>
+                    <td id="compare-comp-rev">$2.5B</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Employees</strong></td>
+                    <td>850</td>
+                    <td id="compare-comp-emp">7,400</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Headquarters</strong></td>
+                    <td>San Francisco, CA</td>
+                    <td id="compare-comp-hq">San Francisco, CA</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Founded</strong></td>
+                    <td>2011</td>
+                    <td id="compare-comp-founded">2003</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Primary Tech Stack</strong></td>
+                    <td>PostgreSQL, AWS, Salesforce, HubSpot CRM, Python, Redis, G-Suite</td>
+                    <td id="compare-comp-tech" class="text-sm">Salesforce, AWS, React, Node.js</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" id="modal-cancel-btn">Close Comparison</button>
+            <button class="btn btn-primary" onclick="alert('Demo feature: Unlock full profile reports!')">Get Full Comparison Report</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upgrade Plan Modal Overlay -->
+      <div id="upgrade-modal" class="modal-overlay hidden">
+        <div class="modal-card modal-large">
+          <div class="modal-header">
+            <h3>Upgrade Your ZinfoHub Plan</h3>
+            <button class="modal-close-btn" id="upgrade-modal-close-btn">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p class="modal-intro">Choose the pricing plan that fits your pipeline speeds and sales operations.</p>
+            <div class="pricing-grid">
+              <div class="pricing-card">
+                <h4 class="plan-name">Starter</h4>
+                <div class="plan-price">$49<span>/mo</span></div>
+                <p class="plan-desc">For prospecting freelancers and startup builders.</p>
+                <ul class="plan-features">
+                  <li>100 Contact Unlocks / mo</li>
+                  <li>Basic Core Search Filters</li>
+                  <li>Global Firmographic Details</li>
+                  <li class="disabled">Technographic Tech Stack</li>
+                  <li class="disabled">Scoops & Buying Signals</li>
+                  <li class="disabled">Automatic CRM Sync</li>
+                </ul>
+                <button class="btn btn-secondary plan-btn" onclick="alert('Trial started for Starter Plan!')">Activate Starter</button>
+              </div>
+              <div class="pricing-card popular">
+                <div class="popular-ribbon">Most Popular</div>
+                <h4 class="plan-name">Professional</h4>
+                <div class="plan-price">$149<span>/mo</span></div>
+                <p class="plan-desc">For active sales reps and growing enterprise teams.</p>
+                <ul class="plan-features">
+                  <li><strong>500</strong> Contact Unlocks / mo</li>
+                  <li>Advanced Filter Toolbar</li>
+                  <li>Technographic Stack Views</li>
+                  <li>Real-time Buyer Intent Spikes</li>
+                  <li>Salesforce & HubSpot Sync</li>
+                  <li class="disabled">Custom API Integrations</li>
+                </ul>
+                <button class="btn btn-primary plan-btn" onclick="alert('Trial started for Professional Plan!')">Activate Professional</button>
+              </div>
+              <div class="pricing-card">
+                <h4 class="plan-name">Enterprise</h4>
+                <div class="plan-price">$399<span>/mo</span></div>
+                <p class="plan-desc">For large sales forces needing deep custom integrations.</p>
+                <ul class="plan-features">
+                  <li><strong>Unlimited</strong> Contact Unlocks</li>
+                  <li>All Core & Premium Filters</li>
+                  <li>API Webhook Access</li>
+                  <li>Custom Intent Surge Rules</li>
+                  <li>Dedicated Account CSM</li>
+                  <li>Custom Field Mappings</li>
+                </ul>
+                <button class="btn btn-secondary plan-btn" onclick="alert('Contacting sales team for Enterprise Plan!')">Contact Sales</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- My Profile Modal Overlay -->
+      <div id="profile-modal" class="modal-overlay hidden">
+        <div class="modal-card">
+          <div class="modal-header">
+            <h3>My ZinfoHub Settings</h3>
+            <button class="modal-close-btn" id="profile-modal-close-btn">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="profile-card-header">
+              <div class="profile-large-avatar">AY</div>
+              <div class="profile-user-details">
+                <h4 class="profile-name">Amit Yadav</h4>
+                <p class="profile-title">Senior Sales Development Representative</p>
+                <p class="profile-meta">DigiPe Web Dev • Administrator</p>
+              </div>
+            </div>
+            <div class="profile-section-block">
+              <h4 class="profile-section-title">Credits & Subscription</h4>
+              <div class="usage-progress-container">
+                <div class="usage-progress-labels">
+                  <span>Contact Unlock Credits Used</span>
+                  <span>412 / 500 Used</span>
+                </div>
+                <div class="progress-bar-track">
+                  <div class="progress-bar-fill" style="width: 82.4%"></div>
+                </div>
+                <p class="progress-subtext">Your active plan credits automatically renew on July 24, 2026. <a href="#" id="profile-upgrade-link">Upgrade tier</a> to add credits.</p>
+              </div>
+            </div>
+            <div class="profile-section-block">
+              <h4 class="profile-section-title">Integrations & Security</h4>
+              <div class="settings-list">
+                <div class="settings-item">
+                  <span class="settings-item-label">CRM Sync Connection:</span>
+                  <span class="settings-status-connected">Salesforce Connected</span>
+                </div>
+                <div class="settings-item">
+                  <span class="settings-item-label">Account API Key:</span>
+                  <span class="settings-value">••••••••••••••••34f9</span>
+                </div>
+                <div class="settings-item">
+                  <span class="settings-item-label">System Role Access:</span>
+                  <span class="settings-value">Administrator Access</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" id="profile-modal-cancel-btn">Close Panel</button>
+            <button class="btn btn-primary" onclick="alert('Profile configurations updated!')">Save Settings</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Interactivity Script -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        /* 1. THEME SWITCHER (LIGHT/DARK MODE) */
+        const themeToggleBtn = document.getElementById('theme-toggle-btn');
+        const themeText = themeToggleBtn.querySelector('.theme-text');
+
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+          document.body.classList.add('dark');
+          themeText.textContent = 'Light Mode';
+        } else {
+          document.body.classList.remove('dark');
+          themeText.textContent = 'Dark Mode';
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+          document.body.classList.toggle('dark');
+          const isDark = document.body.classList.contains('dark');
+          localStorage.setItem('theme', isDark ? 'dark' : 'light');
+          themeText.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+        });
+
+        /* 2. SCROLLSPY (STICKY NAV ACTIVE STATE) */
+        const navLinks = document.querySelectorAll('.tab-link');
+        const sections = Array.from(navLinks).map(link => {
+          const id = link.getAttribute('href');
+          return document.querySelector(id);
+        }).filter(el => el !== null);
+
+        function updateActiveNav() {
+          const scrollPosition = window.scrollY + 140;
+          let currentActive = sections[0];
+          
+          for (let i = 0; i < sections.length; i++) {
+            const section = sections[i];
+            if (scrollPosition >= section.offsetTop) {
+              currentActive = section;
+            } else {
+              break;
+            }
+          }
+
+          if (currentActive) {
+            const id = `#${currentActive.id}`;
+            navLinks.forEach(link => {
+              if (link.getAttribute('href') === id) {
+                link.classList.add('active');
+              } else {
+                link.classList.remove('active');
+              }
+            });
+          }
+        }
+
+        window.addEventListener('scroll', updateActiveNav);
+        updateActiveNav();
+
+        /* 3. EXPANDABLE OVERVIEW SECTION */
+        const readMoreBtn = document.getElementById('read-more-btn');
+        const textContainer = document.getElementById('overview-text-container');
+
+        readMoreBtn.addEventListener('click', () => {
+          const isExpanded = textContainer.classList.toggle('expanded');
+          readMoreBtn.innerHTML = isExpanded 
+            ? `Read Less <svg viewBox="0 0 24 24" width="16" height="16" class="chevron-icon" style="transform: rotate(180deg)"><path d="M7 10l5 5 5-5H7z" fill="currentColor"/></svg>`
+            : `Read More <svg viewBox="0 0 24 24" width="16" height="16" class="chevron-icon"><path d="M7 10l5 5 5-5H7z" fill="currentColor"/></svg>`;
+        });
+
+        /* 4. CONTACTS SEARCH & FILTER SYSTEM */
+        const contactTabs = document.querySelectorAll('.filter-tab');
+        const searchInput = document.getElementById('contacts-search-input');
+        const contactRows = document.querySelectorAll('.contact-row');
+        const contactsCount = document.getElementById('contacts-count');
+        const noContactsResults = document.getElementById('no-contacts-results');
+
+        let activeDept = 'all';
+        let searchQuery = '';
+
+        function filterContacts() {
+          let visibleCount = 0;
+
+          contactRows.forEach(row => {
+            const dept = row.getAttribute('data-department');
+            const name = row.querySelector('.contact-name').textContent.toLowerCase();
+            const title = row.querySelector('.contact-title').textContent.toLowerCase();
+            
+            const deptMatch = activeDept === 'all' || dept === activeDept;
+            const searchMatch = name.includes(searchQuery) || title.includes(searchQuery);
+
+            if (deptMatch && searchMatch) {
+              row.classList.remove('hidden');
+              visibleCount++;
+            } else {
+              row.classList.add('hidden');
+            }
+          });
+
+          contactsCount.textContent = `${visibleCount} Contact${visibleCount !== 1 ? 's' : ''}`;
+          
+          if (visibleCount === 0) {
+            noContactsResults.classList.remove('hidden');
+            document.getElementById('contacts-table').classList.add('hidden');
+          } else {
+            noContactsResults.classList.add('hidden');
+            document.getElementById('contacts-table').classList.remove('hidden');
+          }
+        }
+
+        contactTabs.forEach(tab => {
+          tab.addEventListener('click', () => {
+            contactTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            activeDept = tab.getAttribute('data-dept');
+            filterContacts();
+          });
+        });
+
+        searchInput.addEventListener('input', (e) => {
+          searchQuery = e.target.value.toLowerCase().trim();
+          filterContacts();
+        });
+
+        /* 5. CONTACT DETAILS REVEAL SIMULATION */
+        const revealBtns = document.querySelectorAll('.reveal-btn');
+
+        revealBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            if (btn.classList.contains('revealed')) return;
+
+            const btnText = btn.querySelector('.btn-text');
+            const spinner = btn.querySelector('.spinner');
+            const realValue = btn.getAttribute('data-val');
+
+            btnText.classList.add('hidden');
+            spinner.classList.remove('hidden');
+
+            setTimeout(() => {
+              spinner.classList.add('hidden');
+              btnText.textContent = realValue;
+              btnText.classList.remove('hidden');
+              btn.classList.add('revealed');
+            }, 600);
+          });
+        });
+
+        /* 6. TECHNOGRAPHICS FILTER SEARCH */
+        const techFilterInput = document.getElementById('tech-filter-input');
+        const techCards = document.querySelectorAll('.tech-category-card');
+        const techBadges = document.querySelectorAll('.tech-badge');
+        const noTechResults = document.getElementById('no-tech-results');
+
+        techFilterInput.addEventListener('input', (e) => {
+          const query = e.target.value.toLowerCase().trim();
+          let totalMatches = 0;
+
+          if (query === '') {
+            techBadges.forEach(badge => {
+              badge.classList.remove('match', 'fade-badge');
+            });
+            techCards.forEach(card => card.classList.remove('hidden'));
+            noTechResults.classList.add('hidden');
+            return;
+          }
+
+          techCards.forEach(card => {
+            const badgesInCard = card.querySelectorAll('.tech-badge');
+            let cardMatches = 0;
+
+            badgesInCard.forEach(badge => {
+              const techName = badge.getAttribute('data-name');
+              if (techName.includes(query)) {
+                badge.classList.add('match');
+                badge.classList.remove('fade-badge');
+                cardMatches++;
+                totalMatches++;
+              } else {
+                badge.classList.remove('match');
+                badge.classList.add('fade-badge');
+              }
+            });
+
+            if (cardMatches > 0) {
+              card.classList.remove('hidden');
+            } else {
+              card.classList.add('hidden');
+            }
+          });
+
+          if (totalMatches === 0) {
+            noTechResults.classList.remove('hidden');
+          } else {
+            noTechResults.classList.add('hidden');
+          }
+        });
+
+        /* 7. FINANCIALS TABLE ROW EXPANSION */
+        const fundingRows = document.querySelectorAll('.funding-row');
+
+        fundingRows.forEach(row => {
+          row.addEventListener('click', () => {
+            const targetId = row.getAttribute('data-target');
+            const detailsRow = document.getElementById(targetId);
+            const isExpanded = row.classList.toggle('expanded-row');
+            
+            if (isExpanded) {
+              detailsRow.classList.remove('hidden-details');
+            } else {
+              detailsRow.classList.add('hidden-details');
+            }
+          });
+        });
+
+        /* 8. FAQ ACCORDION COMPONENT */
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+        accordionHeaders.forEach(header => {
+          header.addEventListener('click', () => {
+            const currentItem = header.parentElement;
+            const currentBody = currentItem.querySelector('.accordion-body');
+            const isActive = currentItem.classList.contains('active');
+
+            document.querySelectorAll('.accordion-item').forEach(item => {
+              item.classList.remove('active');
+              item.querySelector('.accordion-body').style.maxHeight = '0px';
+            });
+
+            if (!isActive) {
+              currentItem.classList.add('active');
+              currentBody.style.maxHeight = `${currentBody.scrollHeight}px`;
+            }
+          });
+        });
+
+        /* 9. COMPETITOR COMPARISON MODAL */
+        const compareBtns = document.querySelectorAll('.compare-btn');
+        const compareModal = document.getElementById('compare-modal');
+        const modalCloseBtn = document.getElementById('modal-close-btn');
+        const modalCancelBtn = document.getElementById('modal-cancel-btn');
+
+        const compNameHeader = document.getElementById('compare-comp-header');
+        const compNameIntro = document.getElementById('compare-competitor-name');
+        const compRev = document.getElementById('compare-comp-rev');
+        const compEmp = document.getElementById('compare-comp-emp');
+        const compHq = document.getElementById('compare-comp-hq');
+        const compFounded = document.getElementById('compare-comp-founded');
+        const compTech = document.getElementById('compare-comp-tech');
+
+        function openCompareModal(e) {
+          const btn = e.target;
+          const targetComp = btn.getAttribute('data-target-company');
+          const revenue = btn.getAttribute('data-revenue');
+          const employees = btn.getAttribute('data-employees');
+          const hq = btn.getAttribute('data-hq');
+          const founded = btn.getAttribute('data-founded');
+          const tech = btn.getAttribute('data-tech');
+
+          compNameHeader.textContent = targetComp;
+          compNameIntro.textContent = targetComp;
+          compRev.textContent = revenue;
+          compEmp.textContent = employees;
+          compHq.textContent = hq;
+          compFounded.textContent = founded;
+          compTech.textContent = tech;
+
+          compareModal.classList.remove('hidden');
+          document.body.style.overflow = 'hidden';
+        }
+
+        function closeCompareModal() {
+          compareModal.classList.add('hidden');
+          document.body.style.overflow = '';
+        }
+
+        compareBtns.forEach(btn => btn.addEventListener('click', openCompareModal));
+        modalCloseBtn.addEventListener('click', closeCompareModal);
+        modalCancelBtn.addEventListener('click', closeCompareModal);
+
+        compareModal.addEventListener('click', (e) => {
+          if (e.target === compareModal) {
+            closeCompareModal();
+          }
+        });
+
+        /* 10. MOBILE HAMBURGER DRAWER MENU */
+        const mobileDrawer = document.getElementById('mobile-drawer');
+        const mobileDrawerToggle = document.getElementById('mobile-drawer-toggle');
+        const drawerCloseBtn = document.getElementById('drawer-close-btn');
+
+        function openMobileDrawer() {
+          mobileDrawerToggle.classList.add('active');
+          mobileDrawer.classList.remove('hidden-drawer');
+          document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileDrawer() {
+          mobileDrawerToggle.classList.remove('active');
+          mobileDrawer.classList.add('hidden-drawer');
+          document.body.style.overflow = '';
+        }
+
+        mobileDrawerToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isActive = mobileDrawerToggle.classList.contains('active');
+          if (isActive) {
+            closeMobileDrawer();
+          } else {
+            openMobileDrawer();
+          }
+        });
+
+        drawerCloseBtn.addEventListener('click', closeMobileDrawer);
+        
+        mobileDrawer.addEventListener('click', (e) => {
+          if (e.target === mobileDrawer) {
+            closeMobileDrawer();
+          }
+        });
+
+        /* 11. UPGRADE PLAN MODAL PRICING */
+        const upgradeModal = document.getElementById('upgrade-modal');
+        const headerUpgradeBtn = document.getElementById('header-upgrade-btn');
+        const drawerLinkUpgrade = document.getElementById('drawer-link-upgrade');
+        const upgradeModalCloseBtn = document.getElementById('upgrade-modal-close-btn');
+
+        function openUpgradeModal() {
+          closeMobileDrawer();
+          upgradeModal.classList.remove('hidden');
+          document.body.style.overflow = 'hidden';
+        }
+
+        function closeUpgradeModal() {
+          upgradeModal.classList.add('hidden');
+          document.body.style.overflow = '';
+        }
+
+        headerUpgradeBtn.addEventListener('click', openUpgradeModal);
+        drawerLinkUpgrade.addEventListener('click', (e) => {
+          e.preventDefault();
+          openUpgradeModal();
+        });
+        upgradeModalCloseBtn.addEventListener('click', closeUpgradeModal);
+
+        upgradeModal.addEventListener('click', (e) => {
+          if (e.target === upgradeModal) {
+            closeUpgradeModal();
+          }
+        });
+
+        /* 12. MY PROFILE SETTINGS MODAL */
+        const profileModal = document.getElementById('profile-modal');
+        const headerUserAvatar = document.getElementById('header-user-avatar');
+        const drawerLinkProfile = document.getElementById('drawer-link-profile');
+        const profileModalCloseBtn = document.getElementById('profile-modal-close-btn');
+        const profileModalCancelBtn = document.getElementById('profile-modal-cancel-btn');
+        const profileUpgradeLink = document.getElementById('profile-upgrade-link');
+
+        function openProfileModal() {
+          closeMobileDrawer();
+          profileModal.classList.remove('hidden');
+          document.body.style.overflow = 'hidden';
+        }
+
+        function closeProfileModal() {
+          profileModal.classList.add('hidden');
+          document.body.style.overflow = '';
+        }
+
+        headerUserAvatar.addEventListener('click', openProfileModal);
+        drawerLinkProfile.addEventListener('click', (e) => {
+          e.preventDefault();
+          openProfileModal();
+        });
+        profileModalCloseBtn.addEventListener('click', closeProfileModal);
+        profileModalCancelBtn.addEventListener('click', closeProfileModal);
+        
+        profileUpgradeLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          closeProfileModal();
+          openUpgradeModal();
+        });
+
+        profileModal.addEventListener('click', (e) => {
+          if (e.target === profileModal) {
+            closeProfileModal();
+          }
+        });
+
+        /* Escape key listeners */
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            if (!compareModal.classList.contains('hidden')) closeCompareModal();
+            if (!upgradeModal.classList.contains('hidden')) closeUpgradeModal();
+            if (!profileModal.classList.contains('hidden')) closeProfileModal();
+            if (!mobileDrawer.classList.contains('hidden-drawer')) closeMobileDrawer();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
